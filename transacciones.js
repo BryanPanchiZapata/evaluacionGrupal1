@@ -9,6 +9,7 @@ cargar = function () {
     ocultarComponente("divMovimientos");
     deshabilitarComponente("depositar");
     deshabilitarComponente("retirar");
+    deshabilitarComponente("monto");
 }
 
 /*
@@ -23,6 +24,7 @@ buscarCuenta = function (numeroCuenta) {
         mostrarTexto("MsgBuscar", "");
         deshabilitarComponente("depositar");
         deshabilitarComponente("retirar");
+        deshabilitarComponente("monto");
         return null
     } else {
         mostrarTexto("MsgBuscar", "");
@@ -35,6 +37,7 @@ buscarCuenta = function (numeroCuenta) {
         }
         habilitarComponente("depositar");
         habilitarComponente("retirar");
+        habilitarComponente("monto");
         return cuentaEncontrada;
     }
 }
@@ -55,9 +58,14 @@ depositar = function (numeroCuenta, monto) {
     //invoca a buscarCuenta, guarda el resultado en la variable cuentaAfectada;
     let cuentaAfectada = buscarCuenta(numeroCuenta);
     //Al saldo actual de la cuenta afectada, le suma el monto que recibe como parámetro
-    cuentaAfectada.saldo += monto
+    if (cuentaAfectada != null) {
+        cuentaAfectada.saldo += monto
+        return cuentaAfectada;
+    } else {
+        alert("NO SE REALIZÓ EL DEPOSITO. CUENTA INEXISTENTE");
+        return null
+    }
 }
-
 ejecutarDeposito = function () {
     //Toma el numero de cuenta ingresado en la caja de texto
     let numeroCuenta = recuperarTexto("nCuenta");
@@ -67,25 +75,39 @@ ejecutarDeposito = function () {
         alert("MONTO INCORRECTO")
     } else {
         //invoca a depositar
-        depositar(numeroCuenta, monto);
-        //Muestra un mensaje TRANSACCION EXITOSA
-        mostrarTexto("MsgMonto", "TRANSACCION EXITOSA");
-        //Muestra en pantalla el nuevo saldo de la cuenta
-        mostrarTexto("ValorMonto", monto + "$");
+        let cuentaAfectada = depositar(numeroCuenta, monto);
+        if (cuentaAfectada != null) {
+            //Muestra un mensaje TRANSACCION EXITOSA
+            mostrarTexto("MsgMonto", "TRANSACCION DE DEPOSITO EXITOSA");
+            //Muestra en pantalla el nuevo saldo de la cuenta
+            mostrarTexto("ValorMonto", cuentaAfectada.saldo + "$");
+        }
     }
 }
 
-depositar = function (numeroCuenta, monto) {
-    let cuentaAfectada;
-    //invoca a buscarCuenta, guarda el resultado en la variable cuentaAfectada;
-    //Al saldo actual de la cuenta afectada, le suma el monto que recibe como parámetro
-}
-
 retirar = function (numeroCuenta, monto) {
-    let cuentaAfectada;
+    let cuentaAfectada = buscarCuenta(numeroCuenta);
     //invoca a buscarCuenta, guarda el resultado en la variable cuentaAfectada;
+    if (cuentaAfectada.saldo < monto) {
+        alert("SALDO INSUFICIENTE");
+    } else {
+        cuentaAfectada.saldo -= monto;
+        mostrarTexto("MsgMonto", "TRANSACCION DE RETIRO EXITOSA");
+        mostrarTexto("ValorMonto", cuentaAfectada.saldo + "$");
+    }
     //Valida si la cuenta tiene el saldo suficiente para retirar el monto
     //Si el saldo es suficiente,al saldo actual de la cuenta afectada, le resta el monto que recibe como parámetro
     //Si el saldo no es suficiente, muestra un alert SALDO INSUFICIENTE
     //Si logra retirar muestra un mensaje TRANSACCION EXITOSA y muestra en pantalla el nuevo saldo de la cuenta
+}
+
+function ejecutarRetiro() {
+    let numeroCuenta = recuperarTexto("nCuenta");
+    let monto = recuperarFloat("monto");
+    if (monto < 0 || isNaN(monto)) {
+        alert("MONTO INCORRECTO")
+    } else {
+        retirar(numeroCuenta, monto);
+    }
+
 }
