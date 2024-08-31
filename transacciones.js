@@ -80,7 +80,7 @@ ejecutarDeposito = function () {
             //Muestra un mensaje TRANSACCION EXITOSA
             mostrarTexto("MsgMonto", "TRANSACCION DE DEPOSITO EXITOSA");
             //Muestra en pantalla el nuevo saldo de la cuenta
-            mostrarTexto("ValorMonto", cuentaAfectada.saldo + "$");
+            mostrarTexto("ValorMonto", cuentaAfectada.saldo.toFixed(2) + "$");
         }
     }
 }
@@ -93,7 +93,7 @@ retirar = function (numeroCuenta, monto) {
         } else {
             cuentaAfectada.saldo -= monto;
             mostrarTexto("MsgMonto", "TRANSACCION DE RETIRO EXITOSA");
-            mostrarTexto("ValorMonto", cuentaAfectada.saldo + "$");
+            mostrarTexto("ValorMonto", cuentaAfectada.saldo.toFixed(2) + "$");
         }
     } else {
         alert("NO SE REALIZÓ EL RETIRO. CUENTA INEXISTENTE");
