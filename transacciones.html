@@ -30,7 +30,7 @@
                 <div class="contenedorTexto">
                     <div class="etiquetaTexto">CAMPO 1</div>
                     <div class="cajaTexto">
-                        <input type="text" class="caja" />
+                        <input type="text" class="caja" id="nCuenta"/>
                     </div>
                 </div>
                 <div class="contenedorTexto">
@@ -63,9 +63,12 @@
                     <div class="cajaTexto">
                         <input type="text" class="caja" />
                     </div>
+                    <div id="MsgBuscar">
+
+                    </div>
                 </div>
                 <div class="contenedorAcciones">
-                    <input type="button" value="BUSCAR" />
+                    <input type="button" value="BUSCAR" id="buscar" onclick="ejecutarBusqueda();"/>
                 </div>
                 <div class="contenedorTexto">
                     <div class="etiquetaTexto">CAMPO 2</div>
@@ -74,8 +77,8 @@
                     </div>
                 </div>
                 <div class="contenedorAcciones">
-                    <input type="button" value="DEPOSITAR" />
-                    <input type="button" value="RETIRAR" />
+                    <input type="button" value="DEPOSITAR" id="depositar" />
+                    <input type="button" value="RETIRAR" id="retirar" />
                     
                 </div>
               
