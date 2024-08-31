@@ -30,7 +30,7 @@
                 <div class="contenedorTexto">
                     <div class="etiquetaTexto">CAMPO 1</div>
                     <div class="cajaTexto">
-                        <input type="text" class="caja" id="nCuenta"/>
+                        <input type="text" class="caja"/>
                     </div>
                 </div>
                 <div class="contenedorTexto">
@@ -61,23 +61,25 @@
                 <div class="contenedorTexto">
                     <div class="etiquetaTexto">CAMPO 1</div>
                     <div class="cajaTexto">
-                        <input type="text" class="caja" />
-                    </div>
-                    <div id="MsgBuscar">
-
+                        <input type="text" class="caja" id="nCuenta"/>
                     </div>
                 </div>
+                <div id="MsgBuscar">
+
+                </div>
                 <div class="contenedorAcciones">
-                    <input type="button" value="BUSCAR" id="buscar" onclick="ejecutarBusqueda();"/>
+                    <input type="button" value="BUSCAR" id="buscar" onclick="ejecutarBusqueda()"/>
                 </div>
                 <div class="contenedorTexto">
                     <div class="etiquetaTexto">CAMPO 2</div>
                     <div class="cajaTexto">
-                        <input type="text" class="caja" />
+                        <input type="text" class="caja" id="monto"/>
                     </div>
                 </div>
+                <div id="MsgMonto"></div>
+                <div id="ValorMonto"></div>
                 <div class="contenedorAcciones">
-                    <input type="button" value="DEPOSITAR" id="depositar" />
+                    <input type="button" value="DEPOSITAR" id="depositar" onclick="ejecutarDeposito();"/>
                     <input type="button" value="RETIRAR" id="retirar" />
                     
                 </div>

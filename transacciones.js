@@ -18,17 +18,26 @@ cargar = function () {
 buscarCuenta = function (numeroCuenta) {
     let buscaCuenta;
     let cuentaEncontrada = null;
-    mostrarTexto("MsgBuscar", "");
-    for (let i = 0; i < cuentas.length; i++) {
-        buscaCuenta = cuentas[i];
-        if (buscaCuenta.numeroCuenta == numeroCuenta) {
-            cuentaEncontrada = buscaCuenta;
-            break;
+    if (numeroCuenta.length != 8) {
+        alert("NUMERO DE CUENTA INCORRECTA");
+        mostrarTexto("MsgBuscar", "");
+        deshabilitarComponente("depositar");
+        deshabilitarComponente("retirar");
+        return null
+    } else {
+        mostrarTexto("MsgBuscar", "");
+        for (let i = 0; i < cuentas.length; i++) {
+            buscaCuenta = cuentas[i];
+            if (buscaCuenta.numeroCuenta == numeroCuenta) {
+                cuentaEncontrada = buscaCuenta;
+                break;
+            }
         }
+        habilitarComponente("depositar");
+        habilitarComponente("retirar");
+        return cuentaEncontrada;
     }
-    return cuentaEncontrada;
 }
-
 ejecutarBusqueda = function () {
     //toma el numero de cuenta de la caja de texto
     let numeroCuenta = recuperarTexto("nCuenta");
@@ -44,17 +53,26 @@ ejecutarBusqueda = function () {
 
 depositar = function (numeroCuenta, monto) {
     //invoca a buscarCuenta, guarda el resultado en la variable cuentaAfectada;
-    let cuentaAfectada=buscarCuenta(numeroCuenta);
+    let cuentaAfectada = buscarCuenta(numeroCuenta);
     //Al saldo actual de la cuenta afectada, le suma el monto que recibe como parámetro
-    cuentaAfectada.saldo+=monto
+    cuentaAfectada.saldo += monto
 }
 
 ejecutarDeposito = function () {
     //Toma el numero de cuenta ingresado en la caja de texto
+    let numeroCuenta = recuperarTexto("nCuenta");
     //Toma el monto ingresado en la caja de texto
-    //invoca a depositar
-    //Muestra un mensaje TRANSACCION EXITOSA
-    //Muestra en pantalla el nuevo saldo de la cuenta
+    let monto = recuperarFloat("monto");
+    if (monto < 0 || isNaN(monto)) {
+        alert("MONTO INCORRECTO")
+    } else {
+        //invoca a depositar
+        depositar(numeroCuenta, monto);
+        //Muestra un mensaje TRANSACCION EXITOSA
+        mostrarTexto("MsgMonto", "TRANSACCION EXITOSA");
+        //Muestra en pantalla el nuevo saldo de la cuenta
+        mostrarTexto("ValorMonto", monto + "$");
+    }
 }
 
 depositar = function (numeroCuenta, monto) {
