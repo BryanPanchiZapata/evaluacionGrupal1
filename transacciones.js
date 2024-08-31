@@ -87,13 +87,16 @@ ejecutarDeposito = function () {
 
 retirar = function (numeroCuenta, monto) {
     let cuentaAfectada = buscarCuenta(numeroCuenta);
-    //invoca a buscarCuenta, guarda el resultado en la variable cuentaAfectada;
-    if (cuentaAfectada.saldo < monto) {
-        alert("SALDO INSUFICIENTE");
+    if (cuentaAfectada != null) {
+        if (cuentaAfectada.saldo < monto) {
+            alert("SALDO INSUFICIENTE");
+        } else {
+            cuentaAfectada.saldo -= monto;
+            mostrarTexto("MsgMonto", "TRANSACCION DE RETIRO EXITOSA");
+            mostrarTexto("ValorMonto", cuentaAfectada.saldo + "$");
+        }
     } else {
-        cuentaAfectada.saldo -= monto;
-        mostrarTexto("MsgMonto", "TRANSACCION DE RETIRO EXITOSA");
-        mostrarTexto("ValorMonto", cuentaAfectada.saldo + "$");
+        alert("NO SE REALIZÓ EL RETIRO. CUENTA INEXISTENTE");
     }
     //Valida si la cuenta tiene el saldo suficiente para retirar el monto
     //Si el saldo es suficiente,al saldo actual de la cuenta afectada, le resta el monto que recibe como parámetro
