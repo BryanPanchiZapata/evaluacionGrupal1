@@ -16,40 +16,37 @@ cargar = function () {
     si existe retorna el objeto cuenta, caso contrario retorna null. 
 */
 buscarCuenta = function (numeroCuenta) {
-    if (numeroCuenta.length != 8) {
-        mostrarTexto("MsgBuscar", "EL NUMERO DE CUENTA DEBE TENER 8 DIGITOS");
-    } else {
-        mostrarTexto("MsgBuscar", "");
-        let buscaCuenta;
-        let cuentaEncontrada = null;
-        for (let i = 0; i < cuentas.length; i++) {
-            buscaCuenta = cuentas[i];
-            if (buscaCuenta.numeroCuenta == numeroCuenta) {
-                cuentaEncontrada = buscaCuenta;
-                break;
-            }
+    let buscaCuenta;
+    let cuentaEncontrada = null;
+    mostrarTexto("MsgBuscar", "");
+    for (let i = 0; i < cuentas.length; i++) {
+        buscaCuenta = cuentas[i];
+        if (buscaCuenta.numeroCuenta == numeroCuenta) {
+            cuentaEncontrada = buscaCuenta;
+            break;
         }
-        return cuentaEncontrada;
     }
+    return cuentaEncontrada;
 }
 
 ejecutarBusqueda = function () {
     //toma el numero de cuenta de la caja de texto
-    let numeroCuenta=recuperarTexto("nCuenta");
+    let numeroCuenta = recuperarTexto("nCuenta");
     //invoca a buscarCuenta y guarda el resultado en una variable
-    let cuentaBuscada=buscarCuenta(numeroCuenta);
+    let cuentaBuscada = buscarCuenta(numeroCuenta);
     //Si el resultado es diferente de null, muestra en pantalla, caso contrario muestra un alert
-    if (cuentaBuscada!=null) {
-        mostrarTexto("MsgBuscar", "CUENTA ENCONTRADA");              
-    }else{
+    if (cuentaBuscada != null) {
+        mostrarTexto("MsgBuscar", "CUENTA ENCONTRADA");
+    } else {
         alert("CUENTA NO ENCONTRADA");
     }
 }
 
 depositar = function (numeroCuenta, monto) {
-    let cuentaAfectada;
     //invoca a buscarCuenta, guarda el resultado en la variable cuentaAfectada;
+    let cuentaAfectada=buscarCuenta(numeroCuenta);
     //Al saldo actual de la cuenta afectada, le suma el monto que recibe como parámetro
+    cuentaAfectada.saldo+=monto
 }
 
 ejecutarDeposito = function () {
