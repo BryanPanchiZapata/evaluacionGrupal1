@@ -25,6 +25,34 @@ mostrarCuentas = function () {
   //Muestra en pantalla una tabla con la información de todas las cuentas del arreglo.
   //Columnas: NUMERO CUENTA, NOMBRE, SALDO
   //En la columna NOMBRE concatenar el nombre y el apellido
+
+  let cmpCuenta = document.getElementById("tablaCuentas");
+  let contenidoTabla =
+    "<table><tr>" +
+    "<th>NUMERO CUENTA</th>" +
+    "<th>NOMBRE</th>" +
+    "<th>SALDO</th>" +
+    "</tr>";
+  let elementoCuenta;
+
+  for (let i = 0; i < cuentas.length; i++) {
+    elementoCuenta = cuentas[i];
+    contenidoTabla +=
+      "<tr><td>" +
+      elementoCuenta.numeroCuenta +
+      "</td>" +
+      "<td>" +
+      elementoCuenta.nombre +
+      " " +
+      elementoCuenta.apellido +
+      "</td>" +
+      "<td>" +
+      elementoCuenta.saldo +
+      "</td>" +
+      "</tr>";
+  }
+  contenidoTabla += "</table>";
+  cmpCuenta.innerHTML = contenidoTabla;
 };
 
 /*
@@ -74,4 +102,5 @@ agregar = function () {
   //Invoca a agregarCuenta
   agregarCuenta(cuenta);
   //Invoca a mostrarCuentas
+  mostrarCuentas();
 };
