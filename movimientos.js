@@ -42,7 +42,33 @@ mostrarMovimientos=function(misMovimientos){
     //Si ya pinta correctamente la tabla, hacer el siguiente cambio:
     //Si el tipo es D(DEBITO), mostrar el monto en negativo (multiplicar por -1)
     //Si el tipo es C(CREDITO), mostrar el monto en positivo (tal como está guardado)
+    let cmpTabla = document.getElementById("tablaMovimientos");
+    let contenidoTabla = "<table><tr>"+
+    "<th>NUMERO CUENTA</th>"+
+    "<th>MONTO</th>"+
+    "<th>TIPO</th>"+
+    "</tr>";
+    let elementoMovimiento;
+    let monto;
+    for(let i=0; i<misMovimientos.length; i++){
+        elementoMovimiento = misMovimientos[i];
+        if(elementoMovimiento.tipo == "D"){
+            monto = "-"+elementoMovimiento.monto;
+        }else{
+            monto = "+"+elementoMovimiento.monto;
+        }
+
+        contenidoTabla+=
+        "<tr><td>"+elementoMovimiento.numeroCuenta+"</td>"
+        +"<td>"+monto+"</td>"
+        +"<td>"+elementoMovimiento.tipo+"</td>"
+        +"</td>"
+    }
+
+    contenidoTabla+="</table>"
+    cmpTabla.innerHTML = contenidoTabla;
 }
+
 
 
 
