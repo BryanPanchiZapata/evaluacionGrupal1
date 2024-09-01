@@ -13,17 +13,29 @@ cargar=function(){
     
 }
 
+mostrarTablaMovimientos = function(){
+    let numeroCuenta = recuperarTexto("txtCuentaMovimientos");
+    filtrarMovimientos(numeroCuenta);
+}
+
 filtrarMovimientos=function(numeroCuenta){
     let movimientosCuenta=[];
     //Se barre el arreglo de movimientos
     //En cada iteración, verifica si el numero de cuenta del movimiento es igual al que recibe como parametro
     //En caso de serlo, agrega la cuenta al arreglo movimientosCuenta
     //Invoca a mostrarMovimientos, pasándole como parámetro movimientosCuenta
+    for(let i=0; i<movimientos.length; i++){
+        if(numeroCuenta == movimientos[i].numeroCuenta){
+            movimientosCuenta.push(movimientos[i]);
+        }
+    }
+    mostrarMovimientos(movimientosCuenta);
 }
 
 /*
     Recibe un arreglo con los movimientos que va a mostrar en pantalla
 */
+
 mostrarMovimientos=function(misMovimientos){
     //Muestra en pantalla una tabla con los movimientos que recibe en misMovimientos
     //Columnas: NUMERO CUENTA, MONTO, TIPO
