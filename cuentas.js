@@ -22,24 +22,30 @@ cargar = function () {
 };
 
 mostrarCuentas = function () {
-  /*
-      Muestra en pantalla una tabla con la información de todas las cuentas del arreglo.
-      Columnas: NUMERO CUENTA, NOMBRE, SALDO
-      En la columna NOMBRE concatenar el nombre y el apellido
-  */
+  //Muestra en pantalla una tabla con la información de todas las cuentas del arreglo.
+  //Columnas: NUMERO CUENTA, NOMBRE, SALDO
+  //En la columna NOMBRE concatenar el nombre y el apellido
 };
 
 /*
   Busca la cuenta en el arreglo en función del número de cuenta,
   si existe retorna el objeto cuenta, caso contrario retorna null. 
 */
-buscarCuenta = function (numeroCuenta) {};
+buscarCuenta = function (numeroCuenta) {
+  let elementoCuenta;
+  let cuentaEncontrada = null;
+  for (let i = 0; i < cuentas.length; i++) {
+    elementoCuenta = cuentas[i];
+    if (elementoCuenta.numeroCuenta == numeroCuenta) {
+      cuentaEncontrada = elementoCuenta;
+      break;
+    }
+  }
 
-/*
-    Agrega una cuenta al arreglo, solamente si no existe otra cuenta con el mismo numero.
-    No retorna nada
-*/
-mostrarCuentas = function () {
+  return cuentaEncontrada;
+};
+
+agregarCuenta = function (cuenta) {
   //Si ya existe mostrar un alert CUENTA EXISTENTE
   //Si se agrega, mostrar un alert CUENTA AGREGADA
 };
