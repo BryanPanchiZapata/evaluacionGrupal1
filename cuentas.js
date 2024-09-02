@@ -21,40 +21,6 @@ cargar = function () {
   ocultarComponente("divTransacciones");
 };
 
-mostrarCuentas = function () {
-  //Muestra en pantalla una tabla con la información de todas las cuentas del arreglo.
-  //Columnas: NUMERO CUENTA, NOMBRE, SALDO
-  //En la columna NOMBRE concatenar el nombre y el apellido
-
-  let cmpCuenta = document.getElementById("tablaCuentas");
-  let contenidoTabla =
-    "<table><tr>" +
-    "<th>NUMERO CUENTA</th>" +
-    "<th>NOMBRE</th>" +
-    "<th>SALDO</th>" +
-    "</tr>";
-  let elementoCuenta;
-
-  for (let i = 0; i < cuentas.length; i++) {
-    elementoCuenta = cuentas[i];
-    contenidoTabla +=
-      "<tr><td>" +
-      elementoCuenta.numeroCuenta +
-      "</td>" +
-      "<td>" +
-      elementoCuenta.nombre +
-      " " +
-      elementoCuenta.apellido +
-      "</td>" +
-      "<td>" +
-      elementoCuenta.saldo +
-      "</td>" +
-      "</tr>";
-  }
-  contenidoTabla += "</table>";
-  cmpCuenta.innerHTML = contenidoTabla;
-};
-
 /*
   Busca la cuenta en el arreglo en función del número de cuenta,
   si existe retorna el objeto cuenta, caso contrario retorna null. 
@@ -73,34 +39,3 @@ buscarCuenta = function (numeroCuenta) {
   return cuentaEncontrada;
 };
 
-agregarCuenta = function (cuenta) {
-  //Si ya existe mostrar un alert CUENTA EXISTENTE
-  //Si se agrega, mostrar un alert CUENTA AGREGADA
-  let resultado = buscarCuenta(cuenta.numeroCuenta);
-  if (resultado == null) {
-    cuentas.push(cuenta);
-    alert("CUENTA AGREGADA");
-  } else {
-    alert("CUENTA EXISTENTE");
-  }
-};
-
-agregar = function () {
-  //Toma los valores de las cajas de texto, sin validaciones
-  let valorCedula = recuperarTexto("lblCedula");
-  let valorNombre = recuperarTexto("lblNombre");
-  let valorApellido = recuperarTexto("lblApellido");
-  let valorCuenta = recuperarTexto("lblCuenta");
-  //Crea un objeto cuenta y agrega los atributos con los valores de las cajas respectivas
-  let cuenta = {
-    numeroCuenta: valorCuenta,
-    cedula: valorCedula,
-    nombre: valorNombre,
-    apellido: valorApellido,
-    saldo: 0,
-  };
-  //Invoca a agregarCuenta
-  agregarCuenta(cuenta);
-  //Invoca a mostrarCuentas
-  mostrarCuentas();
-};
